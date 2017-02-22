@@ -24,8 +24,8 @@ function createTableDataObject  () {
 };
 
 function clearTableRows (tableId) {
-    $(tableId).find('tbody').remove();
-    $(tableId).append('<tbody></tbody>');
+    $("#" + tableId).find('tbody').remove();
+    $("#" + tableId).append('<tbody></tbody>');
 };
 
 function addEntryRowToTable (entry, tableData) {
@@ -34,6 +34,7 @@ function addEntryRowToTable (entry, tableData) {
 
 function getBankruptcies (amount) {
     var tableId = params.tableId;
+    clearTableRows(tableId);
     $.ajax({
         type: 'GET',
         url: getFullUrl(amount, $('#startDate').val(), $('#endDate').val()),
@@ -59,10 +60,10 @@ function getFullUrl(numberOfResults, startDate, endDate) {
     if (numberOfResults !== undefined && numberOfResults !== null) {
         fullUrl += "&maxResults=" + numberOfResults;
     }
-    if (startDate !== undefined && startDate !== null) {
+    if (startDate !== undefined && startDate !== null && startDate.length > 0) {
         fullUrl += "&noticeRegistrationFrom=" + startDate;
     }
-    if (endDate !== undefined && endDate !== null) {
+    if (endDate !== undefined && endDate !== null && endDate.length > 0) {
         fullUrl += "&noticeRegistrationTo=" + endDate;
     }
     return fullUrl;
