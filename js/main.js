@@ -32,26 +32,42 @@ function addEntryRowToTable (entry, tableData) {
     tableData.addRow([entry.businessId, entry.name, entry.registrationDate]);
 };
 
-function getBankruptcies (amount) {
+function getBankruptcies () {
     var tableId = params.tableId;
     clearTableRows(tableId);
+    $('#resultCount').text("");
     $.ajax({
         type: 'GET',
-        url: getFullUrl(amount, $('#startDate').val(), $('#endDate').val()),
+        url: getFullUrl(1, $('#startDate').val(), $('#endDate').val()),
         dataType: 'json',
         success: function (response) {
-            var tableData = createTableDataObject();
-            $.each(response.results, function (index, entry) {
-                addEntryRowToTable(entry, tableData);
+            $.ajax({
+                type: 'GET',
+                url: getFullUrl(response.totalResults, $('#startDate').val(), $('#endDate').val()),
+                dataType: 'json',
+                success: function (response) {
+                    var tableData = createTableDataObject();
+                    $.each(response.results, function (index, entry) {
+                        addEntryRowToTable(entry, tableData);
+                    });
+                    drawTable(tableId, tableData);
+                    $('#resultCount').text("Total number of results: " + response.totalResults);
+                },
+                error: function (error) {
+                    swal('Error when loading bankruptcies', 'Error message: ' + JSON.stringify(error), 'error');
+                    console.log(error);
+                }
+
             });
-            drawTable(tableId, tableData);
         },
         error: function (error) {
             swal('Error when loading bankruptcies', 'Error message: ' + JSON.stringify(error), 'error');
             console.log(error);
         }
 
-    });
+    });    
+    
+
 };
 
 function getFullUrl(numberOfResults, startDate, endDate) {
