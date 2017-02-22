@@ -1,0 +1,36 @@
+/*
+  ========================================
+  Custom styles
+  ========================================
+*/
+body {
+  font: 300 16px/22px "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 10px;
+}
+
+h1 {
+  font-size: 36px;
+}
+h2 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 21px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 14px;
+}
+
+.parameterform label {
+  display:block;
+  clear:both;
+}
+
+.resultCountContainer {
+  text-align: center;
+  width: 250px;
+  border: 1px solid #dfe2e5;
+}
