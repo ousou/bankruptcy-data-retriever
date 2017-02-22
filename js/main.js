@@ -1,6 +1,8 @@
 var params = {
     apiBaseURL: 'http://avoindata.prh.fi:80/tr/v1/publicnotices',
-    tableId: 'resultTable'
+    tableId: 'resultTable',
+    startDateInputId: 'startDate',
+    endDateInputId: 'endDate',
 };
 
 // Load the Visualization API and the corechart package.
@@ -34,7 +36,7 @@ function getBankruptcies (amount) {
     var tableId = params.tableId;
     $.ajax({
         type: 'GET',
-        url: getFullUrl(amount, "2016-01-01", "2016-12-31"),
+        url: getFullUrl(amount, $('#startDate').val(), $('#endDate').val()),
         dataType: 'json',
         success: function (response) {
             var tableData = createTableDataObject();

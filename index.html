@@ -1,33 +1,44 @@
 <!DOCTYPE html>
 <html lang="fi">
-  <head>
-    <link rel="stylesheet" href="css/main.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" defer></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" defer></script>
-    <script type="text/javascript" src="js/main.js" defer></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js" async></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-    <meta charset="utf-8">
-    <title>Search bankrupted companies</title>
-  </head>
-  <body>
-    <header class="primary-header container group">
-        
-    </header>
+    <head>
+        <link rel="stylesheet" href="css/main.css">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" defer></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" defer></script>
+        <script type="text/javascript" src="js/main.js" defer></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js" async></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+        <meta charset="utf-8">
+        <title>Search bankrupted companies</title>
+    </head>
+    <body>
+        <header class="primary-header container group">
 
-    <section class="parameterform container">
-        <h3>Parameters</h3>
-        <button id="getBankruptcies" onclick="getBankruptcies(100)">Get bankruptcies</button>
-    </section>      
-      
-    <section class="result container">
-        <h3>Results</h3>
-        <div id="resultTable"></div>
-    </section>
+        </header>
+
+        <section class="parameterform container">
+            <h3>Parameters</h3>
+            <label>
+                Start date (YYYY-MM-DD)
+                <input type="date" name="startDate" id="startDate">
+            </label>
+            <label>
+                End date (YYYY-MM-DD)
+                <input type="date" name="endDate" id="endDate">
+            </label>
+            <button id="getBankruptcies" onclick="getBankruptcies(100);">Get bankruptcies</button>
 
 
-    <footer class="primary-footer container group">
+        </section>      
 
-    </footer>
-  </body>
+        <section class="result container">
+            <h3>Results</h3>
+            <div id="resultTable"></div>
+            <p id="resultCount"></p>
+        </section>
+
+
+        <footer class="primary-footer container group">
+
+        </footer>
+    </body>
 </html>
