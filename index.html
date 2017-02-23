@@ -2,7 +2,7 @@
 <html lang="fi">
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-        <link rel="stylesheet" href="css/main.css?v=4">
+        <link rel="stylesheet" href="css/main.css?v=6">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" defer></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" defer></script>
         <script type="text/javascript" src="js/main.js?v=1" defer></script>
@@ -16,32 +16,28 @@
 
         </header>
 
+        <div class="maincontent">
+          <section class="parameterform container">
 
-        <section class="parameterform container">
+              <h3>Parameters</h3>
+              <label>
+                  Start date (YYYY-MM-DD)
+                  <input type="text" name="startDate" id="startDate">
+              </label>
 
-            <h3>Parameters</h3>
-            <label>
-                Start date (YYYY-MM-DD)
-                <input type="text" name="startDate" id="startDate">
-            </label>
+              <label>
+                  End date (YYYY-MM-DD)
+                  <input type="text" name="endDate" id="endDate">
+              </label>
+              <button id="getBankruptcies" onclick="getBankruptcies();">Get bankruptcies</button>
 
-            <label>
-                End date (YYYY-MM-DD)
-                <input type="text" name="endDate" id="endDate">
-            </label>
-            <button id="getBankruptcies" onclick="getBankruptcies();">Get bankruptcies</button>
-
-
-        </section>
-
-
-        <section class="result container">
+          </section>
+          <section class="result container">
             <h3>Results</h3>
             <p class="resultCountContainer" id="resultCount"></p>
             <div id="resultTable"></div>
-        </section>
-
-
+          </section>
+        </div>
         <footer class="primary-footer container group">
 
         </footer>
