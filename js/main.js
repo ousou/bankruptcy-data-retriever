@@ -1,5 +1,5 @@
 var params = {
-    apiBaseURL: 'http://avoindata.prh.fi:80/tr/v1/publicnotices',
+    apiBaseURL: 'https://avoindata.prh.fi:80/tr/v1/publicnotices',
     tableId: 'resultTable',
     startDateInputId: 'startDate',
     endDateInputId: 'endDate',
@@ -9,8 +9,8 @@ var params = {
 google.charts.load('current', {'packages': ['table']});
 
 function drawTable (tableId, data) {
-    var table = new google.visualization.Table(document.getElementById(tableId));    
-    table.draw(data, {width: '100%', height: '100%', sortColumn: 2, sortAscending: true});    
+    var table = new google.visualization.Table(document.getElementById(tableId));
+    table.draw(data, {width: '100%', height: '100%', sortColumn: 2, sortAscending: true});
 };
 
 function createTableDataObject  () {
@@ -65,8 +65,8 @@ function getBankruptcies () {
             console.log(error);
         }
 
-    });    
-    
+    });
+
 
 };
 
