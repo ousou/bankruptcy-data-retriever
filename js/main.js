@@ -1,5 +1,5 @@
 var params = {
-    apiBaseURL: 'https://avoindata.prh.fi:80/tr/v1/publicnotices',
+    apiBaseURL: 'https://avoindata.prh.fi/tr/v1/publicnotices',
     tableId: 'resultTable',
     startDateInputId: 'startDate',
     endDateInputId: 'endDate',
