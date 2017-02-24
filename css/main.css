@@ -45,6 +45,17 @@ h5 {
   padding-bottom: 20px;
 }
 
+.resultInfo p {
+  float: left;
+}
+
+.resultInfo button {
+  float: right;
+}
+
+.exportButtonDiv {
+  padding-top: 12px;
+}
 
 .parameterform label {
   display:block;
@@ -53,5 +64,11 @@ h5 {
 
 .resultCountContainer {
   text-align: center;
+  width: 50%;
   border: 1px solid #dfe2e5;
+  height: 20px;
+}
+
+footer {
+  clear: both;
 }

@@ -4,17 +4,24 @@ var params = {
     startDateInputId: 'startDate',
     endDateInputId: 'endDate',
 };
-
 // Load the Visualization API and the corechart package.
 google.charts.load('current', {'packages': ['table']});
+google.charts.setOnLoadCallback(drawInitialTable);
+
+var data;
+var table;
+
+function drawInitialTable() {
+    drawTable(params.tableId, createTableDataObject());
+}
 
 function drawTable (tableId, data) {
-    var table = new google.visualization.Table(document.getElementById(tableId));
+    table = new google.visualization.Table(document.getElementById(tableId));
     table.draw(data, {width: '100%', height: '100%', sortColumn: 2, sortAscending: true});
 };
 
 function createTableDataObject  () {
-    var data = new google.visualization.DataTable();
+    data = new google.visualization.DataTable();
 
     data.addColumn('string', 'Business id');
     data.addColumn('string', 'Company name');
@@ -34,7 +41,6 @@ function addEntryRowToTable (entry, tableData) {
 
 function getBankruptcies () {
     var tableId = params.tableId;
-    clearTableRows(tableId);
     $('#resultCount').text("");
     $.ajax({
         type: 'GET',
@@ -46,6 +52,7 @@ function getBankruptcies () {
                 url: getFullUrl(response.totalResults, $('#startDate').val(), $('#endDate').val()),
                 dataType: 'json',
                 success: function (response) {
+                    clearTableRows(tableId);
                     var tableData = createTableDataObject();
                     $.each(response.results, function (index, entry) {
                         addEntryRowToTable(entry, tableData);
@@ -83,4 +90,22 @@ function getFullUrl(numberOfResults, startDate, endDate) {
         fullUrl += "&noticeRegistrationTo=" + endDate;
     }
     return fullUrl;
+}
+
+function exportTableToCSV() {
+    var csvHeader = "Business id,Company name,Bankruptcy date\r\n";
+    var csv = google.visualization.dataTableToCsv(data);
+    downloadCSV(csvHeader + csv);
+}
+
+function downloadCSV (csv_out) {
+    var blob = new Blob([csv_out], {type: 'text/csv;charset=utf-8'});
+    var url  = window.URL || window.webkitURL;
+    var link = document.createElementNS("http://www.w3.org/1999/xhtml", "a");
+    link.href = url.createObjectURL(blob);
+    link.download = "bankruptcies.csv";
+
+    var event = document.createEvent("MouseEvents");
+    event.initEvent("click", true, false);
+    link.dispatchEvent(event);
 }
